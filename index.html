@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loan Tracker</title>
+<style>
+  :root{
+    --bg:#0f172a;
+    --card:#1e293b;
+    --card2:#162032;
+    --accent:#22c55e;
+    --accent2:#38bdf8;
+    --text:#e2e8f0;
+    --muted:#94a3b8;
+    --danger:#f87171;
+    --border:#334155;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:linear-gradient(180deg,var(--bg),#0b1220);
+    color:var(--text);
+    min-height:100vh;
+    padding-bottom:40px;
+  }
+  header{
+    padding:22px 18px 16px;
+    text-align:center;
+  }
+  header h1{
+    margin:0 0 4px;
+    font-size:1.3rem;
+  }
+  header p{
+    margin:0;
+    color:var(--muted);
+    font-size:0.85rem;
+  }
+  .wrap{
+    max-width:520px;
+    margin:0 auto;
+    padding:0 14px;
+  }
+  .summary{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .stat{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:14px;
+    text-align:center;
+  }
+  .stat .label{
+    font-size:0.72rem;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    margin-bottom:6px;
+  }
+  .stat .value{
+    font-size:1.25rem;
+    font-weight:700;
+  }
+  .stat.wide{grid-column:1/-1;}
+  .accent{color:var(--accent);}
+  .blue{color:var(--accent2);}
+  .danger{color:var(--danger);}
+  .progress-wrap{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:14px;
+    margin-bottom:16px;
+  }
+  .progress-bar{
+    height:12px;
+    background:#0b1220;
+    border-radius:8px;
+    overflow:hidden;
+    margin-top:8px;
+    border:1px solid var(--border);
+  }
+  .progress-fill{
+    height:100%;
+    background:linear-gradient(90deg,var(--accent2),var(--accent));
+    transition:width .3s ease;
+  }
+  .progress-label{
+    display:flex;
+    justify-content:space-between;
+    font-size:0.75rem;
+    color:var(--muted);
+  }
+  .section-title{
+    font-size:0.95rem;
+    font-weight:600;
+    margin:18px 0 8px;
+    color:var(--text);
+  }
+  .install{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:12px 14px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .install.paid{
+    background:var(--card2);
+    opacity:0.6;
+  }
+  .install.next{
+    border-color:var(--accent2);
+    box-shadow:0 0 0 1px var(--accent2) inset;
+  }
+  .install .no{
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    background:#0b1220;
+    border:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.75rem;
+    color:var(--muted);
+    flex-shrink:0;
+  }
+  .install.paid .no{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#062e14;
+  }
+  .install .info{flex:1;min-width:0;}
+  .install .due{
+    font-size:0.9rem;
+    font-weight:600;
+  }
+  .install .meta{
+    font-size:0.75rem;
+    color:var(--muted);
+  }
+  .install .amt{
+    font-size:0.9rem;
+    font-weight:700;
+    text-align:right;
+    white-space:nowrap;
+  }
+  .btn{
+    border:none;
+    border-radius:10px;
+    padding:8px 12px;
+    font-size:0.8rem;
+    font-weight:600;
+    cursor:pointer;
+  }
+  .btn-pay{
+    background:var(--accent);
+    color:#062e14;
+  }
+  .btn-undo{
+    background:transparent;
+    color:var(--danger);
+    border:1px solid var(--danger);
+  }
+  footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:0.72rem;
+    margin-top:24px;
+    padding:0 20px;
+  }
+  .reset-link{
+    display:block;
+    text-align:center;
+    margin-top:18px;
+    color:var(--muted);
+    font-size:0.75rem;
+    text-decoration:underline;
+    cursor:pointer;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>🏦 Loan Tracker</h1>
+  <p id="loanName">REGULAR LOAN</p>
+</header>
+
+<div class="wrap">
+
+  <div class="summary">
+    <div class="stat">
+      <div class="label">Balance</div>
+      <div class="value danger" id="statBalance">₱0.00</div>
+    </div>
+    <div class="stat">
+      <div class="label">Months Left</div>
+      <div class="value blue" id="statMonths">0</div>
+    </div>
+    <div class="stat wide">
+      <div class="label">Next Payment Due</div>
+      <div class="value accent" id="statNext">—</div>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span id="progressText">0 of 24 paid</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <div class="section-title">Installment Schedule</div>
+  <div id="schedule"></div>
+
+  <span class="reset-link" id="resetBtn">Reset all payments</span>
+</div>
+
+<footer>
+  Data is saved only on this device/browser (localStorage). No server, no account.
+</footer>
+
+<script>
+// ---- Loan schedule (from official Loan Schedule Report) ----
+const LOAN = {
+  name: "REGULAR LOAN",
+  accountNumber: "42-01693-5",
+  granted: 40000.00,
+  rate: 22.00,
+  schedule: [
+    {no:1,  due:"2026-09-06", principal:1327.73, interest:747.40, total:2075.13, balance:38672.27},
+    {no:2,  due:"2026-10-06", principal:1375.85, interest:699.28, total:2075.13, balance:37296.42},
+    {no:3,  due:"2026-11-06", principal:1378.25, interest:696.88, total:2075.13, balance:35918.17},
+    {no:4,  due:"2026-12-06", principal:1425.65, interest:649.48, total:2075.13, balance:34492.52},
+    {no:5,  due:"2027-01-06", principal:1430.64, interest:644.49, total:2075.13, balance:33061.88},
+    {no:6,  due:"2027-02-06", principal:1457.37, interest:617.76, total:2075.13, balance:31604.51},
+    {no:7,  due:"2027-03-06", principal:1541.75, interest:533.38, total:2075.13, balance:30062.76},
+    {no:8,  due:"2027-04-06", principal:1513.41, interest:561.72, total:2075.13, balance:28549.35},
+    {no:9,  due:"2027-05-06", principal:1558.90, interest:516.23, total:2075.13, balance:26990.45},
+    {no:10, due:"2027-06-06", principal:1570.82, interest:504.31, total:2075.13, balance:25419.63},
+    {no:11, due:"2027-07-06", principal:1615.49, interest:459.64, total:2075.13, balance:23804.14},
+    {no:12, due:"2027-08-06", principal:1630.35, interest:444.78, total:2075.13, balance:22173.79},
+    {no:13, due:"2027-09-06", principal:1660.81, interest:414.32, total:2075.13, balance:20512.98},
+    {no:14, due:"2027-10-06", principal:1704.21, interest:370.92, total:2075.13, balance:18808.77},
+    {no:15, due:"2027-11-06", principal:1723.69, interest:351.44, total:2075.13, balance:17085.08},
+    {no:16, due:"2027-12-06", principal:1766.19, interest:308.94, total:2075.13, balance:15318.89},
+    {no:17, due:"2028-01-06", principal:1788.90, interest:286.23, total:2075.13, balance:13529.99},
+    {no:18, due:"2028-02-06", principal:1822.32, interest:252.81, total:2075.13, balance:11707.67},
+    {no:19, due:"2028-03-06", principal:1870.49, interest:204.64, total:2075.13, balance:9837.18},
+    {no:20, due:"2028-04-06", principal:1891.32, interest:183.81, total:2075.13, balance:7945.86},
+    {no:21, due:"2028-05-06", principal:1931.45, interest:143.68, total:2075.13, balance:6014.41},
+    {no:22, due:"2028-06-06", principal:1962.75, interest:112.38, total:2075.13, balance:4051.66},
+    {no:23, due:"2028-07-06", principal:2001.87, interest:73.26,  total:2075.13, balance:2049.79},
+    {no:24, due:"2028-08-06", principal:2049.79, interest:38.30,  total:2088.09, balance:0.00},
+  ]
+};
+
+const STORAGE_KEY = "loanTracker_paidInstallments_v1";
+
+function loadPaid(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  }catch(e){ return {}; }
+}
+function savePaid(paid){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(paid));
+}
+
+function peso(n){
+  return "₱" + n.toLocaleString("en-PH", {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+function formatDate(iso){
+  const d = new Date(iso + "T00:00:00");
+  return d.toLocaleDateString("en-PH", {month:"short", day:"2-digit", year:"numeric"});
+}
+
+let paid = loadPaid();
+
+function render(){
+  const scheduleEl = document.getElementById("schedule");
+  scheduleEl.innerHTML = "";
+
+  const total = LOAN.schedule.length;
+  const paidCount = LOAN.schedule.filter(i => paid[i.no]).length;
+  const nextUnpaid = LOAN.schedule.find(i => !paid[i.no]);
+
+  const balanceBefore = nextUnpaid
+    ? (nextUnpaid.no === 1 ? LOAN.granted : LOAN.schedule[nextUnpaid.no - 2].balance)
+    : 0;
+
+  document.getElementById("statBalance").textContent = peso(balanceBefore);
+  document.getElementById("statMonths").textContent = total - paidCount;
+  document.getElementById("statNext").textContent = nextUnpaid
+    ? formatDate(nextUnpaid.due) + " — " + peso(nextUnpaid.total)
+    : "🎉 Fully Paid!";
+
+  const pct = Math.round((paidCount/total)*100);
+  document.getElementById("progressFill").style.width = pct + "%";
+  document.getElementById("progressText").textContent = `${paidCount} of ${total} paid`;
+  document.getElementById("progressPct").textContent = pct + "%";
+
+  LOAN.schedule.forEach(item => {
+    const isPaid = !!paid[item.no];
+    const isNext = nextUnpaid && item.no === nextUnpaid.no;
+    const row = document.createElement("div");
+    row.className = "install" + (isPaid ? " paid" : "") + (isNext ? " next" : "");
+
+    row.innerHTML = `
+      <div class="no">${isPaid ? "✓" : item.no}</div>
+      <div class="info">
+        <div class="due">${formatDate(item.due)}</div>
+        <div class="meta">Bal after: ${peso(item.balance)}</div>
+      </div>
+      <div class="amt">${peso(item.total)}</div>
+    `;
+
+    const btn = document.createElement("button");
+    btn.className = "btn " + (isPaid ? "btn-undo" : "btn-pay");
+    btn.textContent = isPaid ? "Undo" : "Mark Paid";
+    btn.onclick = () => {
+      if(isPaid){
+        delete paid[item.no];
+      } else {
+        paid[item.no] = { date: new Date().toISOString() };
+      }
+      savePaid(paid);
+      render();
+    };
+    row.appendChild(btn);
+    scheduleEl.appendChild(row);
+  });
+}
+
+document.getElementById("resetBtn").onclick = () => {
+  if(confirm("Reset all recorded payments? This cannot be undone.")){
+    paid = {};
+    savePaid(paid);
+    render();
+  }
+};
+
+render();
+</script>
+</body>
+</html>
