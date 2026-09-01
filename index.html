@@ -172,6 +172,12 @@
   }
   .loan-card.open .chev{ transform:rotate(180deg); }
   .loan-progress{ padding:0 16px 14px; }
+  .quick-pay{
+    width:100%;
+    margin-top:10px;
+    padding:10px;
+    font-size:0.85rem;
+  }
   .loan-body{
     display:none;
     padding:0 14px 14px;
@@ -508,6 +514,18 @@ function render(){
       <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
       <div class="progress-label"><span>${paidCount} of ${total} paid</span><span>${pct}%</span></div>
     `;
+    if(nextUnpaid){
+      const quickPay = document.createElement("button");
+      quickPay.className = "btn btn-pay quick-pay";
+      quickPay.textContent = `Pay ${peso(nextUnpaid.total)} (${formatDate(nextUnpaid.due)})`;
+      quickPay.onclick = (e) => {
+        e.stopPropagation();
+        loan.paid[nextUnpaid.no] = { date: new Date().toISOString() };
+        saveLoans(loans);
+        render();
+      };
+      progress.appendChild(quickPay);
+    }
 
     const body = document.createElement("div");
     body.className = "loan-body";
