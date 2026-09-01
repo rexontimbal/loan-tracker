@@ -39,7 +39,7 @@
     font-size:0.85rem;
   }
   .wrap{
-    max-width:520px;
+    max-width:560px;
     margin:0 auto;
     padding:0 14px;
   }
@@ -71,15 +71,8 @@
   .accent{color:var(--accent);}
   .blue{color:var(--accent2);}
   .danger{color:var(--danger);}
-  .progress-wrap{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:14px;
-    margin-bottom:16px;
-  }
   .progress-bar{
-    height:12px;
+    height:10px;
     background:#0b1220;
     border-radius:8px;
     overflow:hidden;
@@ -94,65 +87,18 @@
   .progress-label{
     display:flex;
     justify-content:space-between;
-    font-size:0.75rem;
+    font-size:0.72rem;
     color:var(--muted);
+    margin-top:6px;
   }
   .section-title{
     font-size:0.95rem;
     font-weight:600;
-    margin:18px 0 8px;
+    margin:20px 0 8px;
     color:var(--text);
-  }
-  .install{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:12px 14px;
-    margin-bottom:8px;
     display:flex;
     align-items:center;
-    gap:12px;
-  }
-  .install.paid{
-    background:var(--card2);
-    opacity:0.6;
-  }
-  .install.next{
-    border-color:var(--accent2);
-    box-shadow:0 0 0 1px var(--accent2) inset;
-  }
-  .install .no{
-    width:26px;
-    height:26px;
-    border-radius:50%;
-    background:#0b1220;
-    border:1px solid var(--border);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:0.75rem;
-    color:var(--muted);
-    flex-shrink:0;
-  }
-  .install.paid .no{
-    background:var(--accent);
-    border-color:var(--accent);
-    color:#062e14;
-  }
-  .install .info{flex:1;min-width:0;}
-  .install .due{
-    font-size:0.9rem;
-    font-weight:600;
-  }
-  .install .meta{
-    font-size:0.75rem;
-    color:var(--muted);
-  }
-  .install .amt{
-    font-size:0.9rem;
-    font-weight:700;
-    text-align:right;
-    white-space:nowrap;
+    justify-content:space-between;
   }
   .btn{
     border:none;
@@ -171,6 +117,178 @@
     color:var(--danger);
     border:1px solid var(--danger);
   }
+  .btn-add{
+    background:var(--accent2);
+    color:#04202e;
+  }
+  .btn-outline{
+    background:transparent;
+    border:1px solid var(--border);
+    color:var(--text);
+  }
+
+  /* ---- Loan card ---- */
+  .loan-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    margin-bottom:14px;
+    overflow:hidden;
+  }
+  .loan-head{
+    padding:14px 16px;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+  }
+  .loan-head .name{
+    font-weight:700;
+    font-size:1rem;
+  }
+  .loan-head .sub{
+    font-size:0.72rem;
+    color:var(--muted);
+    margin-top:2px;
+  }
+  .loan-head .right{
+    text-align:right;
+    white-space:nowrap;
+  }
+  .loan-head .bal{
+    font-weight:700;
+    color:var(--danger);
+    font-size:0.95rem;
+  }
+  .loan-head .months{
+    font-size:0.72rem;
+    color:var(--accent2);
+  }
+  .chev{
+    color:var(--muted);
+    transition:transform .2s ease;
+    flex-shrink:0;
+  }
+  .loan-card.open .chev{ transform:rotate(180deg); }
+  .loan-progress{ padding:0 16px 14px; }
+  .loan-body{
+    display:none;
+    padding:0 14px 14px;
+    border-top:1px solid var(--border);
+  }
+  .loan-card.open .loan-body{ display:block; }
+  .loan-body .install{
+    background:var(--card2);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:10px 12px;
+    margin-top:10px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .install.paid{ opacity:0.55; }
+  .install.next{
+    border-color:var(--accent2);
+    box-shadow:0 0 0 1px var(--accent2) inset;
+  }
+  .install .no{
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:#0b1220;
+    border:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.7rem;
+    color:var(--muted);
+    flex-shrink:0;
+  }
+  .install.paid .no{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#062e14;
+  }
+  .install .info{flex:1;min-width:0;}
+  .install .due{ font-size:0.85rem; font-weight:600; }
+  .install .meta{ font-size:0.7rem; color:var(--muted); }
+  .install .amt{
+    font-size:0.85rem;
+    font-weight:700;
+    text-align:right;
+    white-space:nowrap;
+  }
+  .loan-actions{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:14px;
+  }
+  .link{
+    color:var(--muted);
+    font-size:0.75rem;
+    text-decoration:underline;
+    cursor:pointer;
+    background:none;
+    border:none;
+  }
+  .link.danger{ color:var(--danger); }
+
+  /* ---- Add loan form ---- */
+  .add-btn-row{ margin-bottom:16px; }
+  .add-btn-row button{
+    width:100%;
+    padding:12px;
+    border-radius:12px;
+    font-size:0.9rem;
+  }
+  .form-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:16px;
+    margin-bottom:16px;
+    display:none;
+  }
+  .form-card.open{ display:block; }
+  .form-card h3{
+    margin:0 0 12px;
+    font-size:1rem;
+  }
+  .field{ margin-bottom:12px; }
+  .field label{
+    display:block;
+    font-size:0.75rem;
+    color:var(--muted);
+    margin-bottom:5px;
+  }
+  .field input{
+    width:100%;
+    padding:10px 12px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:#0b1220;
+    color:var(--text);
+    font-size:0.9rem;
+  }
+  .field input:focus{
+    outline:none;
+    border-color:var(--accent2);
+  }
+  .form-actions{
+    display:flex;
+    gap:10px;
+    margin-top:14px;
+  }
+  .form-actions button{ flex:1; padding:10px; }
+  .empty-state{
+    text-align:center;
+    color:var(--muted);
+    font-size:0.85rem;
+    padding:30px 10px;
+  }
   footer{
     text-align:center;
     color:var(--muted);
@@ -178,54 +296,63 @@
     margin-top:24px;
     padding:0 20px;
   }
-  .reset-link{
-    display:block;
-    text-align:center;
-    margin-top:18px;
-    color:var(--muted);
-    font-size:0.75rem;
-    text-decoration:underline;
-    cursor:pointer;
-  }
 </style>
 </head>
 <body>
 <header>
   <h1>🏦 Loan Tracker</h1>
-  <p id="loanName">REGULAR LOAN</p>
+  <p>All your loans, one dashboard</p>
 </header>
 
 <div class="wrap">
 
   <div class="summary">
     <div class="stat">
-      <div class="label">Balance</div>
-      <div class="value danger" id="statBalance">₱0.00</div>
+      <div class="label">Total Balance</div>
+      <div class="value danger" id="statTotalBalance">₱0.00</div>
     </div>
     <div class="stat">
-      <div class="label">Months Left</div>
-      <div class="value blue" id="statMonths">0</div>
+      <div class="label">Active Loans</div>
+      <div class="value blue" id="statActiveLoans">0</div>
     </div>
     <div class="stat wide">
-      <div class="label">Next Payment Due</div>
-      <div class="value accent" id="statNext">—</div>
+      <div class="label">Due This Round</div>
+      <div class="value accent" id="statDueTotal">₱0.00</div>
     </div>
   </div>
 
-  <div class="progress-wrap">
-    <div class="progress-label">
-      <span id="progressText">0 of 24 paid</span>
-      <span id="progressPct">0%</span>
+  <div class="add-btn-row">
+    <button class="btn btn-add" id="toggleFormBtn">+ Add New Loan</button>
+  </div>
+
+  <div class="form-card" id="formCard">
+    <h3>New Loan</h3>
+    <div class="field">
+      <label>Loan Name</label>
+      <input type="text" id="fName" placeholder="e.g. SALARY LOAN">
     </div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    <div class="field">
+      <label>Amount Owed / Principal (₱)</label>
+      <input type="number" id="fPrincipal" placeholder="e.g. 20000" step="0.01">
+    </div>
+    <div class="field">
+      <label>Monthly Payment (₱)</label>
+      <input type="number" id="fMonthly" placeholder="e.g. 1500" step="0.01">
+    </div>
+    <div class="field">
+      <label>First Due Date</label>
+      <input type="date" id="fDate">
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-outline" id="cancelFormBtn">Cancel</button>
+      <button class="btn btn-add" id="saveFormBtn">Save Loan</button>
     </div>
   </div>
 
-  <div class="section-title">Installment Schedule</div>
-  <div id="schedule"></div>
+  <div class="section-title">Your Loans</div>
+  <div id="loansContainer"></div>
+  <div class="empty-state" id="emptyState" style="display:none">No loans yet. Tap "+ Add New Loan" to start tracking.</div>
 
-  <span class="reset-link" id="resetBtn">Reset all payments</span>
 </div>
 
 <footer>
@@ -233,50 +360,87 @@
 </footer>
 
 <script>
-// ---- Loan schedule (from official Loan Schedule Report) ----
-const LOAN = {
-  name: "REGULAR LOAN",
-  accountNumber: "42-01693-5",
-  granted: 40000.00,
-  rate: 22.00,
-  schedule: [
-    {no:1,  due:"2026-09-06", principal:1327.73, interest:747.40, total:2075.13, balance:38672.27},
-    {no:2,  due:"2026-10-06", principal:1375.85, interest:699.28, total:2075.13, balance:37296.42},
-    {no:3,  due:"2026-11-06", principal:1378.25, interest:696.88, total:2075.13, balance:35918.17},
-    {no:4,  due:"2026-12-06", principal:1425.65, interest:649.48, total:2075.13, balance:34492.52},
-    {no:5,  due:"2027-01-06", principal:1430.64, interest:644.49, total:2075.13, balance:33061.88},
-    {no:6,  due:"2027-02-06", principal:1457.37, interest:617.76, total:2075.13, balance:31604.51},
-    {no:7,  due:"2027-03-06", principal:1541.75, interest:533.38, total:2075.13, balance:30062.76},
-    {no:8,  due:"2027-04-06", principal:1513.41, interest:561.72, total:2075.13, balance:28549.35},
-    {no:9,  due:"2027-05-06", principal:1558.90, interest:516.23, total:2075.13, balance:26990.45},
-    {no:10, due:"2027-06-06", principal:1570.82, interest:504.31, total:2075.13, balance:25419.63},
-    {no:11, due:"2027-07-06", principal:1615.49, interest:459.64, total:2075.13, balance:23804.14},
-    {no:12, due:"2027-08-06", principal:1630.35, interest:444.78, total:2075.13, balance:22173.79},
-    {no:13, due:"2027-09-06", principal:1660.81, interest:414.32, total:2075.13, balance:20512.98},
-    {no:14, due:"2027-10-06", principal:1704.21, interest:370.92, total:2075.13, balance:18808.77},
-    {no:15, due:"2027-11-06", principal:1723.69, interest:351.44, total:2075.13, balance:17085.08},
-    {no:16, due:"2027-12-06", principal:1766.19, interest:308.94, total:2075.13, balance:15318.89},
-    {no:17, due:"2028-01-06", principal:1788.90, interest:286.23, total:2075.13, balance:13529.99},
-    {no:18, due:"2028-02-06", principal:1822.32, interest:252.81, total:2075.13, balance:11707.67},
-    {no:19, due:"2028-03-06", principal:1870.49, interest:204.64, total:2075.13, balance:9837.18},
-    {no:20, due:"2028-04-06", principal:1891.32, interest:183.81, total:2075.13, balance:7945.86},
-    {no:21, due:"2028-05-06", principal:1931.45, interest:143.68, total:2075.13, balance:6014.41},
-    {no:22, due:"2028-06-06", principal:1962.75, interest:112.38, total:2075.13, balance:4051.66},
-    {no:23, due:"2028-07-06", principal:2001.87, interest:73.26,  total:2075.13, balance:2049.79},
-    {no:24, due:"2028-08-06", principal:2049.79, interest:38.30,  total:2088.09, balance:0.00},
-  ]
-};
+const STORAGE_KEY = "loanTracker_loans_v2";
+const OLD_KEY = "loanTracker_paidInstallments_v1";
 
-const STORAGE_KEY = "loanTracker_paidInstallments_v1";
+// ---- Official bank schedule for the original REGULAR LOAN ----
+const REGULAR_LOAN_SCHEDULE = [
+  {no:1,  due:"2026-09-06", total:2075.13, balance:38672.27},
+  {no:2,  due:"2026-10-06", total:2075.13, balance:37296.42},
+  {no:3,  due:"2026-11-06", total:2075.13, balance:35918.17},
+  {no:4,  due:"2026-12-06", total:2075.13, balance:34492.52},
+  {no:5,  due:"2027-01-06", total:2075.13, balance:33061.88},
+  {no:6,  due:"2027-02-06", total:2075.13, balance:31604.51},
+  {no:7,  due:"2027-03-06", total:2075.13, balance:30062.76},
+  {no:8,  due:"2027-04-06", total:2075.13, balance:28549.35},
+  {no:9,  due:"2027-05-06", total:2075.13, balance:26990.45},
+  {no:10, due:"2027-06-06", total:2075.13, balance:25419.63},
+  {no:11, due:"2027-07-06", total:2075.13, balance:23804.14},
+  {no:12, due:"2027-08-06", total:2075.13, balance:22173.79},
+  {no:13, due:"2027-09-06", total:2075.13, balance:20512.98},
+  {no:14, due:"2027-10-06", total:2075.13, balance:18808.77},
+  {no:15, due:"2027-11-06", total:2075.13, balance:17085.08},
+  {no:16, due:"2027-12-06", total:2075.13, balance:15318.89},
+  {no:17, due:"2028-01-06", total:2075.13, balance:13529.99},
+  {no:18, due:"2028-02-06", total:2075.13, balance:11707.67},
+  {no:19, due:"2028-03-06", total:2075.13, balance:9837.18},
+  {no:20, due:"2028-04-06", total:2075.13, balance:7945.86},
+  {no:21, due:"2028-05-06", total:2075.13, balance:6014.41},
+  {no:22, due:"2028-06-06", total:2075.13, balance:4051.66},
+  {no:23, due:"2028-07-06", total:2075.13, balance:2049.79},
+  {no:24, due:"2028-08-06", total:2088.09, balance:0.00},
+];
 
-function loadPaid(){
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+
+function pad2(n){ return n < 10 ? "0" + n : "" + n; }
+function toISO(d){
+  return d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());
+}
+
+function generateSimpleSchedule(principal, monthlyPayment, firstDueISO){
+  const schedule = [];
+  let balance = Math.round(principal * 100) / 100;
+  const first = new Date(firstDueISO + "T00:00:00");
+  const year = first.getFullYear(), month = first.getMonth(), day = first.getDate();
+  let no = 1;
+  while(balance > 0.009 && no <= 600){
+    const due = new Date(year, month + (no - 1), day);
+    const payment = Math.min(monthlyPayment, balance);
+    balance = Math.round((balance - payment) * 100) / 100;
+    schedule.push({ no, due: toISO(due), total: Math.round(payment*100)/100, balance });
+    no++;
+  }
+  return schedule;
+}
+
+function loadLoans(){
   try{
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : {};
-  }catch(e){ return {}; }
+    if(raw) return JSON.parse(raw);
+  }catch(e){}
+
+  // migrate from old single-loan version if present
+  const loans = [];
+  let paid = {};
+  try{
+    const oldRaw = localStorage.getItem(OLD_KEY);
+    if(oldRaw) paid = JSON.parse(oldRaw);
+  }catch(e){}
+
+  loans.push({
+    id: uid(),
+    name: "REGULAR LOAN",
+    granted: 40000.00,
+    schedule: REGULAR_LOAN_SCHEDULE,
+    paid: paid
+  });
+  saveLoans(loans);
+  return loans;
 }
-function savePaid(paid){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(paid));
+
+function saveLoans(loans){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(loans));
 }
 
 function peso(n){
@@ -287,69 +451,164 @@ function formatDate(iso){
   return d.toLocaleDateString("en-PH", {month:"short", day:"2-digit", year:"numeric"});
 }
 
-let paid = loadPaid();
+let loans = loadLoans();
+const openState = {};
 
-function render(){
-  const scheduleEl = document.getElementById("schedule");
-  scheduleEl.innerHTML = "";
-
-  const total = LOAN.schedule.length;
-  const paidCount = LOAN.schedule.filter(i => paid[i.no]).length;
-  const nextUnpaid = LOAN.schedule.find(i => !paid[i.no]);
-
+function loanStats(loan){
+  const total = loan.schedule.length;
+  const paidCount = loan.schedule.filter(i => loan.paid[i.no]).length;
+  const nextUnpaid = loan.schedule.find(i => !loan.paid[i.no]);
   const balanceBefore = nextUnpaid
-    ? (nextUnpaid.no === 1 ? LOAN.granted : LOAN.schedule[nextUnpaid.no - 2].balance)
+    ? (nextUnpaid.no === 1 ? loan.granted : loan.schedule[nextUnpaid.no - 2].balance)
     : 0;
-
-  document.getElementById("statBalance").textContent = peso(balanceBefore);
-  document.getElementById("statMonths").textContent = total - paidCount;
-  document.getElementById("statNext").textContent = nextUnpaid
-    ? formatDate(nextUnpaid.due) + " — " + peso(nextUnpaid.total)
-    : "🎉 Fully Paid!";
-
-  const pct = Math.round((paidCount/total)*100);
-  document.getElementById("progressFill").style.width = pct + "%";
-  document.getElementById("progressText").textContent = `${paidCount} of ${total} paid`;
-  document.getElementById("progressPct").textContent = pct + "%";
-
-  LOAN.schedule.forEach(item => {
-    const isPaid = !!paid[item.no];
-    const isNext = nextUnpaid && item.no === nextUnpaid.no;
-    const row = document.createElement("div");
-    row.className = "install" + (isPaid ? " paid" : "") + (isNext ? " next" : "");
-
-    row.innerHTML = `
-      <div class="no">${isPaid ? "✓" : item.no}</div>
-      <div class="info">
-        <div class="due">${formatDate(item.due)}</div>
-        <div class="meta">Bal after: ${peso(item.balance)}</div>
-      </div>
-      <div class="amt">${peso(item.total)}</div>
-    `;
-
-    const btn = document.createElement("button");
-    btn.className = "btn " + (isPaid ? "btn-undo" : "btn-pay");
-    btn.textContent = isPaid ? "Undo" : "Mark Paid";
-    btn.onclick = () => {
-      if(isPaid){
-        delete paid[item.no];
-      } else {
-        paid[item.no] = { date: new Date().toISOString() };
-      }
-      savePaid(paid);
-      render();
-    };
-    row.appendChild(btn);
-    scheduleEl.appendChild(row);
-  });
+  return { total, paidCount, nextUnpaid, balanceBefore };
 }
 
-document.getElementById("resetBtn").onclick = () => {
-  if(confirm("Reset all recorded payments? This cannot be undone.")){
-    paid = {};
-    savePaid(paid);
-    render();
+function render(){
+  const container = document.getElementById("loansContainer");
+  container.innerHTML = "";
+  document.getElementById("emptyState").style.display = loans.length ? "none" : "block";
+
+  let totalBalance = 0;
+  let activeLoans = 0;
+  let dueTotal = 0;
+
+  loans.forEach(loan => {
+    const { total, paidCount, nextUnpaid, balanceBefore } = loanStats(loan);
+    totalBalance += balanceBefore;
+    if(nextUnpaid){ activeLoans++; dueTotal += nextUnpaid.total; }
+
+    const pct = total ? Math.round((paidCount/total)*100) : 0;
+    const isOpen = !!openState[loan.id];
+
+    const card = document.createElement("div");
+    card.className = "loan-card" + (isOpen ? " open" : "");
+
+    const head = document.createElement("div");
+    head.className = "loan-head";
+    head.innerHTML = `
+      <div>
+        <div class="name">${loan.name}</div>
+        <div class="sub">${nextUnpaid ? "Next: " + formatDate(nextUnpaid.due) : "🎉 Fully paid"}</div>
+      </div>
+      <div class="right">
+        <div class="bal">${peso(balanceBefore)}</div>
+        <div class="months">${total - paidCount} mo left</div>
+      </div>
+      <div class="chev">▾</div>
+    `;
+    head.onclick = () => {
+      openState[loan.id] = !openState[loan.id];
+      render();
+    };
+
+    const progress = document.createElement("div");
+    progress.className = "loan-progress";
+    progress.innerHTML = `
+      <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+      <div class="progress-label"><span>${paidCount} of ${total} paid</span><span>${pct}%</span></div>
+    `;
+
+    const body = document.createElement("div");
+    body.className = "loan-body";
+
+    loan.schedule.forEach(item => {
+      const isPaid = !!loan.paid[item.no];
+      const isNext = nextUnpaid && item.no === nextUnpaid.no;
+      const row = document.createElement("div");
+      row.className = "install" + (isPaid ? " paid" : "") + (isNext ? " next" : "");
+      row.innerHTML = `
+        <div class="no">${isPaid ? "✓" : item.no}</div>
+        <div class="info">
+          <div class="due">${formatDate(item.due)}</div>
+          <div class="meta">Bal after: ${peso(item.balance)}</div>
+        </div>
+        <div class="amt">${peso(item.total)}</div>
+      `;
+      const btn = document.createElement("button");
+      btn.className = "btn " + (isPaid ? "btn-undo" : "btn-pay");
+      btn.textContent = isPaid ? "Undo" : "Mark Paid";
+      btn.onclick = (e) => {
+        e.stopPropagation();
+        if(isPaid){
+          delete loan.paid[item.no];
+        } else {
+          loan.paid[item.no] = { date: new Date().toISOString() };
+        }
+        saveLoans(loans);
+        render();
+      };
+      row.appendChild(btn);
+      body.appendChild(row);
+    });
+
+    const actions = document.createElement("div");
+    actions.className = "loan-actions";
+    actions.innerHTML = `<button class="link">Reset payments</button><button class="link danger">Delete loan</button>`;
+    actions.querySelector(".link:not(.danger)").onclick = (e) => {
+      e.stopPropagation();
+      if(confirm(`Reset all payments for "${loan.name}"?`)){
+        loan.paid = {};
+        saveLoans(loans);
+        render();
+      }
+    };
+    actions.querySelector(".link.danger").onclick = (e) => {
+      e.stopPropagation();
+      if(confirm(`Delete "${loan.name}" completely? This cannot be undone.`)){
+        loans = loans.filter(l => l.id !== loan.id);
+        saveLoans(loans);
+        render();
+      }
+    };
+    body.appendChild(actions);
+
+    card.appendChild(head);
+    card.appendChild(progress);
+    card.appendChild(body);
+    container.appendChild(card);
+  });
+
+  document.getElementById("statTotalBalance").textContent = peso(totalBalance);
+  document.getElementById("statActiveLoans").textContent = activeLoans;
+  document.getElementById("statDueTotal").textContent = peso(dueTotal);
+}
+
+// ---- Add loan form ----
+const formCard = document.getElementById("formCard");
+document.getElementById("toggleFormBtn").onclick = () => {
+  formCard.classList.add("open");
+  document.getElementById("fDate").valueAsDate = new Date();
+};
+document.getElementById("cancelFormBtn").onclick = () => {
+  formCard.classList.remove("open");
+};
+document.getElementById("saveFormBtn").onclick = () => {
+  const name = document.getElementById("fName").value.trim();
+  const principal = parseFloat(document.getElementById("fPrincipal").value);
+  const monthly = parseFloat(document.getElementById("fMonthly").value);
+  const dateVal = document.getElementById("fDate").value;
+
+  if(!name || !principal || principal <= 0 || !monthly || monthly <= 0 || !dateVal){
+    alert("Palihug i-fill up tanang fields nga husto (Loan Name, Principal, Monthly Payment, First Due Date).");
+    return;
   }
+
+  const schedule = generateSimpleSchedule(principal, monthly, dateVal);
+  loans.push({
+    id: uid(),
+    name,
+    granted: Math.round(principal*100)/100,
+    schedule,
+    paid: {}
+  });
+  saveLoans(loans);
+
+  document.getElementById("fName").value = "";
+  document.getElementById("fPrincipal").value = "";
+  document.getElementById("fMonthly").value = "";
+  formCard.classList.remove("open");
+  render();
 };
 
 render();
